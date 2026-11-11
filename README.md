@@ -1,40 +1,20 @@
-# API Iris con KNN
+# Nuestra primera API Iris
 
-## Objetivo
+Este proyecto muestra el recorrido de una primera API: recibe las medidas de una flor, consulta el clasificador Iris y devuelve una respuesta JSON. La API se prueba en Swagger, se ejecuta dentro de Docker y se hace accesible desde Google Colab mediante un túnel HTTPS de ngrok.
 
-Entrenar un clasificador KNN con el conjunto Iris y exponer predicciones mediante una API FastAPI. El modelo usa `StandardScaler` y `KNeighborsClassifier` con `k=4`.
+## El recorrido de una petición
 
-## Componentes y archivos
+El cliente envía a `POST /predict` las cuatro medidas de una flor: largo y ancho del sépalo, y largo y ancho del pétalo. FastAPI valida los valores recibidos, los pasa al clasificador disponible en la aplicación y devuelve la especie estimada, su identificador y las distancias a los cuatro vecinos más cercanos.
 
-- `train_model.py`: entrena y evalúa el modelo.
-- `artifacts/iris_knn_k4.pkl`: pipeline ajustado y metadatos necesarios para predecir.
-- `data/iris_historico.csv`: datos históricos guardados aparte para reproducibilidad o reentrenamiento; no se cargan en cada predicción.
-- `app.py`: API FastAPI.
-- `Pruebas_api.ipynb`: llamadas de prueba desde Google Colab con salidas guardadas.
-- `diagrama_componentes_peticion_respuesta.png`: componentes y recorrido de la petición y la respuesta.
+`GET /health` permite comprobar que la API está activa y que el clasificador está disponible. La ruta `/` presenta un mensaje de bienvenida y señala la documentación interactiva.
 
-## Requisitos y entrenamiento
-
-Requiere Python 3.11 recomendado. En PowerShell, desde esta carpeta:
-
-```powershell
-python -m venv .venv
-.\.venv\Scripts\Activate.ps1
-pip install -r requirements.txt
-python train_model.py
-```
-
-El entrenamiento genera el PKL y el CSV histórico.
-
-## Endpoints
-
-| Método | Ruta | Función |
+| Método | Endpoint | Respuesta |
 |---|---|---|
-| GET | `/` | Mensaje de bienvenida y acceso a la documentación |
-| GET | `/health` | Comprueba que la API y el modelo están disponibles |
-| POST | `/predict` | Predice la especie a partir de cuatro medidas |
+| GET | `/` | Mensaje de bienvenida y acceso a `/docs` |
+| GET | `/health` | Estado de la API y nombre del clasificador |
+| POST | `/predict` | Especie estimada, identificador, distancias y valor de `k` |
 
-Ejemplo para `POST /predict`:
+Ejemplo de cuerpo para `POST /predict`:
 
 ```json
 {
@@ -45,43 +25,53 @@ Ejemplo para `POST /predict`:
 }
 ```
 
-Respuesta de ejemplo: `200 OK`, especie `setosa`, `k=4` y las distancias a los cuatro vecinos más cercanos.
+Con esas medidas, la respuesta observada fue `200 OK` y la especie estimada fue `setosa`.
 
-## Ejecutar con Docker y abrir Swagger
+## La API en local y Swagger
 
-Con Docker Desktop iniciado y después de generar el PKL:
+Durante la prueba local, Uvicorn sirve la aplicación en el puerto 8000:
+
+```powershell
+uvicorn app:app --reload
+```
+
+Swagger presenta automáticamente los endpoints en <http://127.0.0.1:8000/docs>. Desde esa página se ejecutaron `GET /health` y `POST /predict` y se comprobaron sus respuestas.
+
+### Evidencia de Swagger
+
+`GET /health` respondió con estado `ok` y `k=4`:
+
+![Prueba de salud en Swagger](evidencias/swagger_health.png)
+
+`POST /predict` respondió con la clase `setosa`:
+
+![Predicción Iris en Swagger](evidencias/swagger_predict.png)
+
+## La misma API dentro de Docker
+
+Docker empaqueta la aplicación y sus dependencias en una imagen. El contenedor publica el puerto 8000 del servicio en el puerto 8000 del equipo:
 
 ```powershell
 docker build -t iris-knn-api .
 docker run --rm -p 8000:8000 iris-knn-api
 ```
 
-Abre <http://localhost:8000/docs> para probar `GET /health` y `POST /predict` desde Swagger. Mantén la terminal del contenedor abierta.
+Con el contenedor activo, la documentación de Swagger queda disponible en <http://localhost:8000/docs>. Para iniciar Docker después de una ejecución local de Uvicorn, el puerto 8000 debe estar libre.
 
-### Evidencia de Swagger
+El entorno empleado incluye Python 3.11, los paquetes indicados en `requirements.txt` y Docker Desktop. La carpeta `artifacts` debe contener `iris_knn_k4.pkl`, que la API carga al arrancar.
 
-La prueba de salud devuelve HTTP 200 y confirma el clasificador con `k=4`:
+## Acceso desde Google Colab a través de ngrok
 
-![Swagger: GET /health](evidencias/swagger_health.png)
-
-La prueba de predicción devuelve HTTP 200 y clasifica las medidas de ejemplo como `setosa`:
-
-![Swagger: POST /predict](evidencias/swagger_predict.png)
-
-## Exponer la API con ngrok
-
-Con el contenedor Docker en ejecución, instala ngrok y configura el token de tu cuenta en tu equipo:
+ngrok crea una dirección HTTPS temporal que reenvía las peticiones al puerto 8000 local. Con una cuenta de ngrok, el agente se configura una vez en el equipo y el túnel se inicia mientras el contenedor está activo:
 
 ```powershell
 ngrok config add-authtoken TU_TOKEN
 ngrok http 8000
 ```
 
-Copia la URL HTTPS que ngrok muestra y sustituye el dominio en el notebook. No guardes el token en el repositorio. La URL del túnel es temporal; Docker y ngrok deben seguir ejecutándose mientras haces las pruebas.
+El token permanece en la configuración local de ngrok y no se incluye en el repositorio. La URL HTTPS que aparece en la terminal se usa como `BASE_URL` en Colab; cambia al iniciar otro túnel. Docker y ngrok permanecen activos mientras se ejecuta el notebook.
 
-## Probar desde Google Colab
-
-En `Pruebas_api.ipynb`, configura `BASE_URL` con la URL vigente de ngrok y ejecuta estas peticiones:
+En `Pruebas_api.ipynb`, `requests` realiza una comprobación de salud y una predicción usando esa URL:
 
 ```python
 import requests
@@ -102,24 +92,20 @@ datos = {
 requests.post(f"{BASE_URL}/predict", json=datos).json()
 ```
 
-Salidas obtenidas en Colab:
+### Salidas registradas en Colab
+
+La comprobación de salud devolvió:
 
 ```text
 200
 {'estado': 'ok', 'modelo': 'KNeighborsClassifier', 'k': 4}
 ```
 
+La predicción devolvió:
+
 ```text
 200
 {'clase_id': 0, 'especie': 'setosa', 'distancias_vecinos': [3.3178273389207606, 3.5920967560334733, 4.4155514994342635, 4.737377248341377], 'k': 4}
 ```
 
-El notebook conserva las celdas y sus salidas como evidencia de la prueba remota.
-
-## Diagrama de componentes
-
-![Recorrido de la petición y la respuesta](diagrama_componentes_peticion_respuesta.png)
-
-## Flujo técnico por pasos
-
-![Flujo de trabajo técnico con comandos](diagrama_flujo.png)
+El notebook conserva las celdas y sus salidas, de modo que permite seguir la petición completa desde Colab hasta la respuesta de la API.
