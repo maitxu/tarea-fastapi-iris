@@ -1,4 +1,4 @@
-# Nuestra primera API Iris
+# Primera API Iris
 
 Este proyecto muestra el recorrido de una primera API: recibe las medidas de una flor, consulta el clasificador Iris y devuelve una respuesta JSON. La API se prueba en Swagger, se ejecuta dentro de Docker y se hace accesible desde Google Colab mediante un túnel HTTPS de ngrok.
 
