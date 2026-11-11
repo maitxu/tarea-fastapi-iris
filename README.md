@@ -57,16 +57,3 @@ Usa el mismo entorno de versiones al cargar el PKL. No cargues archivos pickle d
 
 La tarea adjunta pide una API sencilla de dos endpoints, Swagger, ngrok, Colab, GitHub y un diagrama; señala que entrenar o integrar IA no es necesario. Este ejemplo añade un modelo KNN a ese recorrido. Para cumplir la rúbrica, todavía habría que demostrar las llamadas desde Colab a través de ngrok, publicar el repo y aportar el diagrama/capturas.
 
-## Diagrama del flujo
-
-```mermaid
-flowchart LR
-  A[train_model.py] --> B[Datos Iris de scikit-learn]
-  A --> C[iris_knn_k4.pkl: escalador y KNN k=4]
-  A --> D[iris_historico.csv]
-  E[Colab] -->|POST /predict| F[FastAPI en Docker]
-  F -->|carga el modelo| C
-  F -->|predicción| E
-  G[Swagger /docs] -->|prueba| F
-  E <-->|túnel HTTPS| H[ngrok]
-```

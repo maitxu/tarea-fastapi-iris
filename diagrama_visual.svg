@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1480" height="1010" viewBox="30 195 1480 1010" role="img" aria-labelledby="t d">
+<title id="t">Flujo de trabajo de la API Iris con KNN</title>
+<desc id="d">Infografía por fases del proyecto: entrenamiento y artefactos, API y Swagger, Docker, túnel ngrok, llamadas desde Colab y entrega en GitHub y Moodle.</desc>
+<defs>
+ <linearGradient id="hero" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#073B70"/><stop offset="1" stop-color="#082B56"/></linearGradient>
+ <linearGradient id="bluebar" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#0875C9"/><stop offset="1" stop-color="#159FE3"/></linearGradient>
+ <linearGradient id="greenbar" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#17A873"/><stop offset="1" stop-color="#39C782"/></linearGradient>
+ <linearGradient id="orangebar" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#E89A12"/><stop offset="1" stop-color="#F5B629"/></linearGradient>
+ <linearGradient id="purplebar" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#7452C8"/><stop offset="1" stop-color="#9568E4"/></linearGradient>
+ <filter id="shadow" x="-15%" y="-20%" width="130%" height="150%"><feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#143D68" flood-opacity=".14"/></filter>
+ <marker id="arr" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M1 1L9 5 1 9" fill="none" stroke="#163F6B" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></marker>
+ <style>
+ .f{font-family:'Segoe UI',Arial,sans-serif}.heroTitle{font-size:39px;font-weight:750;fill:#fff}.heroSub{font-size:19px;fill:#D9EAF9}.phase{font-size:21px;font-weight:700;fill:#fff}.num{font-size:16px;font-weight:800;fill:#fff}.cardTitle{font-size:18px;font-weight:750;fill:#152D47}.body{font-size:15px;fill:#394F66}.tiny{font-size:13px;fill:#536B82}.tag{font-size:12px;font-weight:700}.sideHead{font-size:20px;font-weight:750;fill:#fff}.sideText{font-size:16px;font-weight:650;fill:#172E48}.footerTitle{font-size:16px;font-weight:750;fill:#fff}.footerText{font-size:16px;font-weight:600;fill:#183D62}
+ </style>
+</defs>
+<rect width="1800" height="1360" fill="#F4F8FC"/>
+<!-- Header -->
+<rect x="45" y="24" width="1710" height="150" rx="28" fill="url(#hero)"/>
+<circle cx="115" cy="99" r="42" fill="#FFFFFF" opacity=".12"/>
+<!-- simple box icon -->
+<path d="M91 86l24-14 24 14v28l-24 14-24-14z M91 86l24 14 24-14 M115 100v28" fill="none" stroke="#EAF6FF" stroke-width="4" stroke-linejoin="round"/>
+<path d="M177 55v88" stroke="#6FA8D7" stroke-width="2" opacity=".8"/>
+<text class="f heroTitle" x="210" y="83">Flujo de trabajo · API Iris con KNN (k = 4)</text>
+<text class="f heroSub" x="212" y="119">Del entrenamiento del modelo a la prueba externa y la entrega del proyecto</text>
+<rect x="1390" y="66" width="315" height="55" rx="27" fill="#FFFFFF" opacity=".13"/>
+<text class="f tag" x="1420" y="99" fill="#FFFFFF" style="font-size:15px;letter-spacing:.7px">FASTAPI  ·  DOCKER  ·  COLAB</text>
+
+<!-- Phase panels -->
+<rect x="45" y="202" width="1455" height="225" rx="20" fill="#E7F3FD" stroke="#7BBBE8" stroke-width="1.6"/>
+<rect x="45" y="202" width="354" height="42" rx="18" fill="url(#bluebar)"/><text class="f phase" x="72" y="231">01  Preparación y modelo</text>
+<rect x="45" y="445" width="1455" height="225" rx="20" fill="#E8F7F0" stroke="#78CDA5" stroke-width="1.6"/>
+<rect x="45" y="445" width="320" height="42" rx="18" fill="url(#greenbar)"/><text class="f phase" x="72" y="474">02  API y pruebas locales</text>
+<rect x="45" y="688" width="1455" height="225" rx="20" fill="#FFF5DC" stroke="#EFC45E" stroke-width="1.6"/>
+<rect x="45" y="688" width="300" height="42" rx="18" fill="url(#orangebar)"/><text class="f phase" x="72" y="717">03  Contenedor Docker</text>
+<rect x="45" y="931" width="1455" height="267" rx="20" fill="#F1EBFC" stroke="#B09AE8" stroke-width="1.6"/>
+<rect x="45" y="931" width="352" height="42" rx="18" fill="url(#purplebar)"/><text class="f phase" x="72" y="960">04  Túnel y publicación</text>
+
+<!-- Connectors behind cards -->
+<g fill="none" stroke="#173F6A" stroke-width="2.4" marker-end="url(#arr)">
+ <path d="M402 331h19"/><path d="M761 331h19"/><path d="M1120 331h19"/>
+ <path d="M402 574h19"/><path d="M761 574h19"/><path d="M1120 574h19"/>
+ <path d="M402 817h19"/><path d="M761 817h19"/><path d="M1120 817h19"/>
+ <path d="M337 1082h12"/><path d="M623 1082h12"/><path d="M909 1082h12"/><path d="M1195 1082h12"/>
+</g>
+<!-- card helper geometry: 4 columns x 65, 424, 783, 1142; width 340; top of cards 260,503,746 -->
+<!-- Phase 1 cards -->
+<g filter="url(#shadow)"><rect x="65" y="260" width="337" height="145" rx="15" fill="#fff" stroke="#1A72B8" stroke-width="1.7"/><rect x="424" y="260" width="337" height="145" rx="15" fill="#fff" stroke="#1A72B8" stroke-width="1.7"/><rect x="783" y="260" width="337" height="145" rx="15" fill="#fff" stroke="#1A72B8" stroke-width="1.7"/><rect x="1142" y="260" width="337" height="145" rx="15" fill="#fff" stroke="#1A72B8" stroke-width="1.7"/></g>
+<g><circle cx="92" cy="288" r="17" fill="#0875C9"/><text class="f num" x="87" y="294">1</text><rect x="344" y="275" width="42" height="28" rx="7" fill="#E8F3FC"/><text class="f tag" x="353" y="294" fill="#176CAA">PY</text><text class="f cardTitle" x="88" y="333">Preparar entorno</text><text class="f body" x="88" y="360">Crear y activar .venv;</text><text class="f body" x="88" y="382">instalar requirements.txt</text>
+<circle cx="451" cy="288" r="17" fill="#0875C9"/><text class="f num" x="446" y="294">2</text><rect x="703" y="275" width="42" height="28" rx="7" fill="#E8F3FC"/><text class="f tag" x="711" y="294" fill="#176CAA">DATA</text><text class="f cardTitle" x="447" y="333">Cargar Iris</text><text class="f body" x="447" y="360">Obtener las 4 medidas y la especie</text><text class="f body" x="447" y="382">desde scikit-learn; separar train/test</text>
+<circle cx="810" cy="288" r="17" fill="#0875C9"/><text class="f num" x="805" y="294">3</text><rect x="1062" y="275" width="42" height="28" rx="7" fill="#E8F3FC"/><text class="f tag" x="1070" y="294" fill="#176CAA">KNN</text><text class="f cardTitle" x="806" y="333">Entrenar y evaluar</text><text class="f body" x="806" y="360">Pipeline: StandardScaler +</text><text class="f body" x="806" y="382">KNeighborsClassifier (k = 4)</text>
+<circle cx="1169" cy="288" r="17" fill="#0875C9"/><text class="f num" x="1164" y="294">4</text><rect x="1421" y="275" width="42" height="28" rx="7" fill="#E8F3FC"/><text class="f tag" x="1428" y="294" fill="#176CAA">PKL</text><text class="f cardTitle" x="1165" y="333">Guardar artefactos</text><text class="f body" x="1165" y="360">Modelo y escalador → iris_knn_k4.pkl</text><text class="f body" x="1165" y="382">Histórico aparte → iris_historico.csv</text></g>
+
+<!-- Phase 2 cards -->
+<g filter="url(#shadow)"><rect x="65" y="503" width="337" height="145" rx="15" fill="#fff" stroke="#29966B" stroke-width="1.7"/><rect x="424" y="503" width="337" height="145" rx="15" fill="#fff" stroke="#29966B" stroke-width="1.7"/><rect x="783" y="503" width="337" height="145" rx="15" fill="#fff" stroke="#29966B" stroke-width="1.7"/><rect x="1142" y="503" width="337" height="145" rx="15" fill="#fff" stroke="#29966B" stroke-width="1.7"/></g>
+<g><circle cx="92" cy="531" r="17" fill="#17A873"/><text class="f num" x="87" y="537">5</text><rect x="344" y="518" width="42" height="28" rx="7" fill="#E8F7F0"/><text class="f tag" x="351" y="537" fill="#168358">API</text><text class="f cardTitle" x="88" y="576">Crear app FastAPI</text><text class="f body" x="88" y="603">Cargar el pipeline PKL al iniciar</text><text class="f body" x="88" y="625">la aplicación</text>
+<circle cx="451" cy="531" r="17" fill="#17A873"/><text class="f num" x="446" y="537">6</text><rect x="703" y="518" width="42" height="28" rx="7" fill="#E8F7F0"/><text class="f tag" x="709" y="537" fill="#168358">GET</text><text class="f cardTitle" x="447" y="576">Comprobar estado</text><text class="f body" x="447" y="603">GET /health responde estado ok</text><text class="f body" x="447" y="625">y confirma KNN con k = 4</text>
+<circle cx="810" cy="531" r="17" fill="#17A873"/><text class="f num" x="805" y="537">7</text><rect x="1062" y="518" width="42" height="28" rx="7" fill="#E8F7F0"/><text class="f tag" x="1068" y="537" fill="#168358">POST</text><text class="f cardTitle" x="806" y="576">Predecir especie</text><text class="f body" x="806" y="603">POST /predict recibe las 4 medidas</text><text class="f body" x="806" y="625">y devuelve clase y distancias</text>
+<circle cx="1169" cy="531" r="17" fill="#17A873"/><text class="f num" x="1164" y="537">8</text><rect x="1421" y="518" width="42" height="28" rx="7" fill="#E8F7F0"/><text class="f tag" x="1426" y="537" fill="#168358">DOCS</text><text class="f cardTitle" x="1165" y="576">Probar con Swagger</text><text class="f body" x="1165" y="603">Abrir /docs y ejecutar ambos</text><text class="f body" x="1165" y="625">endpoints desde el navegador</text></g>
+
+<!-- Phase 3 cards -->
+<g filter="url(#shadow)"><rect x="65" y="746" width="337" height="145" rx="15" fill="#fff" stroke="#D99A19" stroke-width="1.7"/><rect x="424" y="746" width="337" height="145" rx="15" fill="#fff" stroke="#D99A19" stroke-width="1.7"/><rect x="783" y="746" width="337" height="145" rx="15" fill="#fff" stroke="#D99A19" stroke-width="1.7"/><rect x="1142" y="746" width="337" height="145" rx="15" fill="#fff" stroke="#D99A19" stroke-width="1.7"/></g>
+<g><circle cx="92" cy="774" r="17" fill="#E89A12"/><text class="f num" x="87" y="780">9</text><rect x="344" y="761" width="42" height="28" rx="7" fill="#FFF5DC"/><text class="f tag" x="350" y="780" fill="#A86F0A">FILE</text><text class="f cardTitle" x="88" y="819">Preparar Dockerfile</text><text class="f body" x="88" y="846">Incluir dependencias, app y</text><text class="f body" x="88" y="868">artefactos del modelo</text>
+<circle cx="451" cy="774" r="17" fill="#E89A12"/><text class="f num" x="441" y="780">10</text><rect x="703" y="761" width="42" height="28" rx="7" fill="#FFF5DC"/><text class="f tag" x="709" y="780" fill="#A86F0A">BUILD</text><text class="f cardTitle" x="447" y="819">Construir imagen</text><text class="f body" x="447" y="846">docker build -t iris-knn-api .</text><text class="f body" x="447" y="868">desde la carpeta del proyecto</text>
+<circle cx="810" cy="774" r="17" fill="#E89A12"/><text class="f num" x="800" y="780">11</text><rect x="1062" y="761" width="42" height="28" rx="7" fill="#FFF5DC"/><text class="f tag" x="1068" y="780" fill="#A86F0A">RUN</text><text class="f cardTitle" x="806" y="819">Iniciar contenedor</text><text class="f body" x="806" y="846">docker run -p 8000:8000</text><text class="f body" x="806" y="868">mantener Docker activo</text>
+<circle cx="1169" cy="774" r="17" fill="#E89A12"/><text class="f num" x="1159" y="780">12</text><rect x="1421" y="761" width="42" height="28" rx="7" fill="#FFF5DC"/><text class="f tag" x="1427" y="780" fill="#A86F0A">TEST</text><text class="f cardTitle" x="1165" y="819">Validar en el contenedor</text><text class="f body" x="1165" y="846">Abrir localhost:8000/docs</text><text class="f body" x="1165" y="868">y repetir GET + POST</text></g>
+
+<!-- Phase 4 five compact cards -->
+<g filter="url(#shadow)"><rect x="65" y="988" width="272" height="174" rx="15" fill="#fff" stroke="#805EC9" stroke-width="1.7"/><rect x="351" y="988" width="272" height="174" rx="15" fill="#fff" stroke="#805EC9" stroke-width="1.7"/><rect x="637" y="988" width="272" height="174" rx="15" fill="#fff" stroke="#805EC9" stroke-width="1.7"/><rect x="923" y="988" width="272" height="174" rx="15" fill="#fff" stroke="#805EC9" stroke-width="1.7"/><rect x="1209" y="988" width="272" height="174" rx="15" fill="#fff" stroke="#805EC9" stroke-width="1.7"/></g>
+<g><circle cx="92" cy="1017" r="17" fill="#805EC9"/><text class="f num" x="82" y="1023">13</text><rect x="278" y="1004" width="42" height="27" rx="7" fill="#F1EBFC"/><text class="f tag" x="285" y="1022" fill="#6849B3">ngrok</text><text class="f cardTitle" x="86" y="1060" style="font-size:16px">Configurar ngrok</text><text class="f body" x="86" y="1086" style="font-size:14px">Authtoken en el equipo;</text><text class="f body" x="86" y="1108" style="font-size:14px">no subirlo al repositorio</text>
+<circle cx="378" cy="1017" r="17" fill="#805EC9"/><text class="f num" x="368" y="1023">14</text><rect x="564" y="1004" width="42" height="27" rx="7" fill="#F1EBFC"/><text class="f tag" x="571" y="1022" fill="#6849B3">URL</text><text class="f cardTitle" x="372" y="1060" style="font-size:16px">Abrir túnel HTTPS</text><text class="f body" x="372" y="1086" style="font-size:14px">ngrok http 8000</text><text class="f body" x="372" y="1108" style="font-size:14px">copiar dirección pública</text>
+<circle cx="664" cy="1017" r="17" fill="#805EC9"/><text class="f num" x="654" y="1023">15</text><rect x="850" y="1004" width="42" height="27" rx="7" fill="#F1EBFC"/><text class="f tag" x="857" y="1022" fill="#6849B3">COLAB</text><text class="f cardTitle" x="658" y="1060" style="font-size:16px">Llamar desde Colab</text><text class="f body" x="658" y="1086" style="font-size:14px">requests: GET /health</text><text class="f body" x="658" y="1108" style="font-size:14px">y POST /predict</text>
+<circle cx="950" cy="1017" r="17" fill="#805EC9"/><text class="f num" x="940" y="1023">16</text><rect x="1136" y="1004" width="42" height="27" rx="7" fill="#F1EBFC"/><text class="f tag" x="1144" y="1022" fill="#6849B3">IPYNB</text><text class="f cardTitle" x="944" y="1060" style="font-size:16px">Guardar evidencia</text><text class="f body" x="944" y="1086" style="font-size:14px">Pruebas_api.ipynb con</text><text class="f body" x="944" y="1108" style="font-size:14px">código y salidas visibles</text>
+<circle cx="1236" cy="1017" r="17" fill="#805EC9"/><text class="f num" x="1226" y="1023">17</text><rect x="1422" y="1004" width="42" height="27" rx="7" fill="#F1EBFC"/><text class="f tag" x="1429" y="1022" fill="#6849B3">GIT</text><text class="f cardTitle" x="1230" y="1060" style="font-size:16px">Publicar y entregar</text><text class="f body" x="1230" y="1086" style="font-size:14px">GitHub: código + README;</text><text class="f body" x="1230" y="1108" style="font-size:14px">Moodle: enlace + evidencias</text></g>
+
+<!-- Side panel -->
+<rect x="1530" y="202" width="225" height="996" rx="20" fill="#fff" stroke="#9AB7D2" stroke-width="1.6"/>
+<rect x="1530" y="202" width="225" height="52" rx="18" fill="url(#hero)"/><text class="f sideHead" x="1552" y="236">Tecnologías</text>
+<g>
+ <rect x="1547" y="274" width="191" height="75" rx="14" fill="#EAF3FB"/><circle cx="1582" cy="311" r="22" fill="#3572A5"/><text class="f tag" x="1571" y="316" fill="#fff">Py</text><text class="f sideText" x="1614" y="318">Python</text>
+ <rect x="1547" y="361" width="191" height="75" rx="14" fill="#EAF3FB"/><circle cx="1582" cy="398" r="22" fill="#3475A8"/><text class="f tag" x="1568" y="403" fill="#fff">ML</text><text class="f sideText" x="1614" y="405">scikit-learn</text>
+ <rect x="1547" y="448" width="191" height="75" rx="14" fill="#EAF7F0"/><circle cx="1582" cy="485" r="22" fill="#2EAD80"/><text class="f tag" x="1569" y="490" fill="#fff">API</text><text class="f sideText" x="1614" y="492">FastAPI</text>
+ <rect x="1547" y="535" width="191" height="75" rx="14" fill="#EAF7F0"/><circle cx="1582" cy="572" r="22" fill="#31A66F"/><text class="f tag" x="1569" y="577" fill="#fff">/d</text><text class="f sideText" x="1614" y="579">Swagger</text>
+ <rect x="1547" y="622" width="191" height="75" rx="14" fill="#FFF5E2"/><circle cx="1582" cy="659" r="22" fill="#2496ED"/><text class="f tag" x="1569" y="664" fill="#fff">Box</text><text class="f sideText" x="1614" y="666">Docker</text>
+ <rect x="1547" y="709" width="191" height="75" rx="14" fill="#F1EBFC"/><circle cx="1582" cy="746" r="22" fill="#805EC9"/><text class="f tag" x="1568" y="751" fill="#fff">ng</text><text class="f sideText" x="1614" y="753">ngrok</text>
+ <rect x="1547" y="796" width="191" height="75" rx="14" fill="#FCEEF1"/><circle cx="1582" cy="833" r="22" fill="#D85D78"/><text class="f tag" x="1568" y="838" fill="#fff">Co</text><text class="f sideText" x="1614" y="840">Colab</text>
+ <rect x="1547" y="883" width="191" height="75" rx="14" fill="#EAF6EF"/><circle cx="1582" cy="920" r="22" fill="#32936B"/><text class="f tag" x="1568" y="925" fill="#fff">GH</text><text class="f sideText" x="1614" y="927">GitHub</text>
+ <rect x="1547" y="970" width="191" height="75" rx="14" fill="#EEF2F8"/><circle cx="1582" cy="1007" r="22" fill="#516C93"/><text class="f tag" x="1568" y="1012" fill="#fff">M</text><text class="f sideText" x="1614" y="1014">Moodle</text>
+</g>
+<text class="f tiny" x="1550" y="1090">Prueba local primero;</text><text class="f tiny" x="1550" y="1112">después expón con ngrok.</text>
+
+<!-- Footer data flow -->
+<rect x="45" y="1220" width="1710" height="103" rx="20" fill="#E2EDF7" stroke="#B5C9DC" stroke-width="1.5"/>
+<rect x="65" y="1237" width="235" height="68" rx="13" fill="#0C477D"/><text class="f footerTitle" x="91" y="1278">FLUJO DE PREDICCIÓN</text>
+<text class="f footerText" x="330" y="1261">Colab</text><text class="f footerText" x="407" y="1261" fill="#6F8BA5">→</text><text class="f footerText" x="444" y="1261">URL HTTPS ngrok</text><text class="f footerText" x="612" y="1261" fill="#6F8BA5">→</text><text class="f footerText" x="650" y="1261">FastAPI en Docker</text><text class="f footerText" x="829" y="1261" fill="#6F8BA5">→</text><text class="f footerText" x="868" y="1261">Pipeline KNN del PKL</text><text class="f footerText" x="1084" y="1261" fill="#6F8BA5">→</text><text class="f footerText" x="1123" y="1261">Especie + distancias</text>
+<text class="f tiny" x="330" y="1291">El CSV histórico queda aparte para reproducir, auditar o reentrenar; no se necesita al predecir.</text>
+</svg>
+
